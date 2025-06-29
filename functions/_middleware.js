@@ -1,36 +1,39 @@
 export async function onRequest(context) {
-    // Define the username and password
-    const USERNAME = "kyle";
-    const PASSWORD = "travelagency2024";
+    const url = new URL(context.request.url);
     
-    // Get the Authorization header
-    const authorization = context.request.headers.get("Authorization");
-    
-    if (!authorization) {
-      return new Response("Please enter credentials", {
-        status: 401,
-        headers: {
-          "WWW-Authenticate": 'Basic realm="Proposal Access"'
-        }
-      });
+    // Allow access to login page
+    if (url.pathname === '/login.html') {
+      return context.next();
     }
     
-    // Parse the authorization header
-    const [scheme, encoded] = authorization.split(' ');
+    // Check for auth cookie
+    const cookie = context.request.headers.get('Cookie');
+    const isAuthenticated = cookie && cookie.includes('auth=valid');
     
-    if (scheme !== 'Basic') {
-      return new Response("Invalid credentials", { status: 401 });
+    if (!isAuthenticated) {
+      return Response.redirect(`${url.origin}/login.html`, 302);
     }
     
-    // Decode credentials
-    const decoded = atob(encoded);
-    const [username, password] = decoded.split(':');
-    
-    // Check credentials
-    if (username !== USERNAME || password !== PASSWORD) {
-      return new Response("Invalid credentials", { status: 401 });
-    }
-    
-    // Allow the request to continue
     return context.next();
+  }
+  
+  export async function onRequestPost(context) {
+    const url = new URL(context.request.url);
+    
+    if (url.pathname === '/api/login') {
+      const formData = await context.request.formData();
+      const username = formData.get('username');
+      const password = formData.get('password');
+      
+      if (username === 'kyle' && password === 'TravelAgency2024') {
+        return new Response('Success', {
+          status: 200,
+          headers: {
+            'Set-Cookie': 'auth=valid; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=86400'
+          }
+        });
+      }
+      
+      return new Response('Invalid credentials', { status: 401 });
+    }
   }
