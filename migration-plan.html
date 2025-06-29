@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Agency Migration Plan</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .phase-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .phase-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid #667eea;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .phase-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        
+        .phase-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .duration {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .deliverables {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        
+        .deliverable-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 10px;
+        }
+        
+        .check-icon {
+            color: #4CAF50;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .schema-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .schema-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .data-box {
+            background: #e3f2fd;
+            border: 2px solid #2196F3;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .arrow {
+            font-size: 2em;
+            color: #666;
+            margin: 0 20px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .benefit-card {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .benefit-title {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .small-team-section {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .team-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .questions-section {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .question-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .timeline {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .timeline-marker {
+            background: #667eea;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 30px;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding-top: 5px;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -30px;
+            width: 2px;
+            background: #ddd;
+        }
+        
+        .timeline-item:last-child .timeline-line {
+            display: none;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .phase-card:hover {
+                transform: none;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Travel Agency Migration Plan</h1>
+        <div class="subtitle">Transitioning from Airtable to a MySQL Database System</div>
+    </div>
+
+    <div class="schema-section">
+        <h2 style="text-align: center; color: #333; margin-bottom: 30px;">What We're Building</h2>
+        <div class="schema-diagram">
+            <div class="data-box">
+                <h3>Current System</h3>
+                <p><strong>Airtable</strong></p>
+                <p>All your data in one place</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="data-box" style="background: #e8f5e9; border-color: #4CAF50;">
+                <h3>New System</h3>
+                <p><strong>MySQL Database</strong></p>
+                <p>Professional & Scalable</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="data-box" style="background: #fce4ec; border-color: #e91e63;">
+                <h3>Web Application</h3>
+                <p><strong>Custom Portals</strong></p>
+                <p>Client & Passenger Access</p>
+            </div>
+        </div>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-title">🚀 Better Performance</div>
+                <p>Faster searches and reports, handles thousands of bookings without slowing down</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-title">🔒 Enhanced Security</div>
+                <p>Bank-level security for client data, role-based access control</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-title">📈 Unlimited Growth</div>
+                <p>No more Airtable limits, grow your business without constraints</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-title">🤖 Smart Automation</div>
+                <p>Automated invoicing, reminders, and booking confirmations</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="text-align: center; color: #333; margin-bottom: 30px;">Project Phases</h2>
+    
+    <div class="phase-container">
+        <div class="phase-card">
+            <div class="phase-number">1</div>
+            <div class="phase-title">Database Foundation & Migration</div>
+            <div class="duration">20-25 hours</div>
+            <p>We'll analyze your current Airtable setup, design a MySQL database, and migrate all your data efficiently.</p>
+            <div class="deliverables">
+                <h4 style="margin-top: 0;">What You'll Get:</h4>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>MySQL database (dev, staging, prod)</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>All core data migrated from Airtable</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Tested relationships and data integrity</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Ready for application development</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Essential documentation</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase-card">
+            <div class="phase-number">2</div>
+            <div class="phase-title">Backend Development</div>
+            <div class="duration">4-5 weeks</div>
+            <p>Building the core system that will power your entire travel agency operations, including recreating all your Airtable automations.</p>
+            <div class="deliverables">
+                <h4 style="margin-top: 0;">What You'll Get:</h4>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Secure API for all operations</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>User authentication system</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>All Airtable automations recreated (scheduled emails, notifications)</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Business logic and workflow rules</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase-card">
+            <div class="phase-number">3</div>
+            <div class="phase-title">Frontend Development</div>
+            <div class="duration">4-5 weeks</div>
+            <p>Creating beautiful, user-friendly web portals for your clients and passengers.</p>
+            <div class="deliverables">
+                <h4 style="margin-top: 0;">What You'll Get:</h4>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Client portal (client.thetravelagency.us)</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Passenger portal (passenger.thetravelagency.us)</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Mobile-friendly design</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase-card">
+            <div class="phase-number">4</div>
+            <div class="phase-title">Integration & Testing</div>
+            <div class="duration">1-2 weeks</div>
+            <p>Connecting all components and ensuring everything works perfectly together.</p>
+            <div class="deliverables">
+                <h4 style="margin-top: 0;">What You'll Get:</h4>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Full system integration</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Performance optimization</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Security testing</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>User acceptance testing</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase-card">
+            <div class="phase-number">5</div>
+            <div class="phase-title">Deployment & Training</div>
+            <div class="duration">1 week</div>
+            <p>Quick deployment and hands-on training for Kyle and the team.</p>
+            <div class="deliverables">
+                <h4 style="margin-top: 0;">What You'll Get:</h4>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>System go-live</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Hands-on training for your 3-person team</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Quick reference guides</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="check-icon">✓</span>
+                    <span>Direct support channel</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="questions-section">
+        <h2 style="color: #f57c00; margin-top: 0;">Questions We Need Answered</h2>
+        <p style="margin-bottom: 25px;">To ensure we build exactly what you need, we'll need to discuss:</p>
+        
+        <div class="question-item">
+            <strong>1. Business Process Questions</strong>
+            <ul style="margin: 10px 0;">
+                <li>What happens when a booking is created? Who gets notified?</li>
+                <li>How are invoices currently generated and sent?</li>
+                <li>What are the different user roles and what can each role do?</li>
+            </ul>
+        </div>
+        
+        <div class="question-item">
+            <strong>2. Data Relationship Questions</strong>
+            <ul style="margin: 10px 0;">
+                <li>Can a Traveler exist without being part of a Group?</li>
+                <li>What happens to bookings if a Group is removed?</li>
+                <li>How do you handle booking modifications and cancellations?</li>
+            </ul>
+        </div>
+        
+        <div class="question-item">
+            <strong>3. Integration Questions</strong>
+            <ul style="margin: 10px 0;">
+                <li>Do you need to integrate with any airline or hotel systems?</li>
+                <li>Are there any accounting systems we need to connect to?</li>
+                <li>Do you need automated email notifications?</li>
+            </ul>
+        </div>
+        
+        <div class="question-item">
+            <strong>4. Priority Questions</strong>
+            <ul style="margin: 10px 0;">
+                <li>Which booking type should we implement first? (Air, Hotel, Car, etc.)</li>
+                <li>Are there any features in Airtable you don't use anymore?</li>
+                <li>What new features would help your business most?</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="timeline">
+        <h2 style="text-align: center; color: #333; margin-bottom: 40px;">Project Timeline</h2>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">Week<br>1</div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+                <h3>Phase 1: Database Foundation & Migration</h3>
+                <p>Database design, setup, data migration (20-25 hours)</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">Week<br>2-6</div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+                <h3>Phase 2: Backend Development</h3>
+                <p>Build APIs, security, automations, business logic</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">Week<br>7-11</div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+                <h3>Phase 3: Frontend Development</h3>
+                <p>Client portal, passenger portal, admin interface</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">Week<br>12</div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+                <h3>Phase 4: Integration & Testing</h3>
+                <p>System integration, performance testing, security validation</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">Week<br>13</div>
+            <div class="timeline-content">
+                <h3>Phase 5: Deployment & Training</h3>
+                <p>Go live, hands-on training for your team</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

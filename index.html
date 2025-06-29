@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Agency Database Migration Proposal - Kyle MacKinnon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1B5E3F 0%, #2d7a52 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .client-info {
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .intro-card h2 {
+            color: #1B5E3F;
+            margin-bottom: 15px;
+        }
+        
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .doc-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+        
+        .doc-header {
+            padding: 25px;
+            background: #f8f9fa;
+            border-bottom: 3px solid #D4AF37;
+        }
+        
+        .doc-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .doc-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1B5E3F;
+            margin-bottom: 5px;
+        }
+        
+        .doc-subtitle {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .doc-content {
+            padding: 25px;
+        }
+        
+        .doc-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .doc-link {
+            color: #1B5E3F;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .doc-link:after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+        
+        .doc-card:hover .doc-link:after {
+            transform: translateX(5px);
+        }
+        
+        .quick-facts {
+            background: #f8f9fa;
+            border-left: 4px solid #D4AF37;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .quick-facts h3 {
+            color: #1B5E3F;
+            margin-bottom: 10px;
+        }
+        
+        .fact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .fact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .fact-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #D4AF37;
+        }
+        
+        .footer {
+            background: #1B5E3F;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .footer h3 {
+            margin-bottom: 15px;
+        }
+        
+        .company-name {
+            color: #D4AF37;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Database Migration Proposal</h1>
+        <p>Transforming Your Travel Agency Operations</p>
+        <div class="client-info">Prepared for: Kyle MacKinnon | The Travel Agency</div>
+    </div>
+
+    <div class="container">
+        <div class="intro-card">
+            <h2>Welcome, Kyle!</h2>
+            <p>Thank you for considering Value Software Solutions for your database migration project. This proposal outlines our comprehensive plan to transform your travel agency operations from Airtable to a professional, scalable MySQL database system with custom web applications.</p>
+            
+            <div class="quick-facts">
+                <h3>Project Overview</h3>
+                <div class="fact-grid">
+                    <div class="fact-item">
+                        <span class="fact-number">13</span>
+                        <span>Week Timeline</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-number">5</span>
+                        <span>Project Phases</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-number">20-25</span>
+                        <span>Hours for Phase 1</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-number">100%</span>
+                        <span>Data Migration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 30px; color: #1B5E3F;">Proposal Documents</h2>
+        
+        <div class="documents-grid">
+            <a href="migration-plan.html" class="doc-card">
+                <div class="doc-header">
+                    <div class="doc-icon">📋</div>
+                    <div class="doc-title">Executive Migration Plan</div>
+                    <div class="doc-subtitle">Complete Project Overview</div>
+                </div>
+                <div class="doc-content">
+                    <p class="doc-description">
+                        Comprehensive overview of all 5 project phases, timeline, deliverables, and key questions we'll need to address together.
+                    </p>
+                    <span class="doc-link">View Full Plan</span>
+                </div>
+            </a>
+
+            <a href="database-structure.html" class="doc-card">
+                <div class="doc-header">
+                    <div class="doc-icon">🗄️</div>
+                    <div class="doc-title">Database Structure</div>
+                    <div class="doc-subtitle">Visual System Design</div>
+                </div>
+                <div class="doc-content">
+                    <p class="doc-description">
+                        Visual representation of your new MySQL database structure, showing how all your data will be organized and connected.
+                    </p>
+                    <span class="doc-link">Explore Structure</span>
+                </div>
+            </a>
+
+            <a href="current-airtable.html" class="doc-card">
+                <div class="doc-header">
+                    <div class="doc-icon">📊</div>
+                    <div class="doc-title">Current System Analysis</div>
+                    <div class="doc-subtitle">Airtable Documentation</div>
+                </div>
+                <div class="doc-content">
+                    <p class="doc-description">
+                        Detailed analysis of your existing Airtable system, including all tables, relationships, and data volumes.
+                    </p>
+                    <span class="doc-link">Review Analysis</span>
+                </div>
+            </a>
+
+            <a href="phase1-plan.html" class="doc-card">
+                <div class="doc-header">
+                    <div class="doc-icon">🚀</div>
+                    <div class="doc-title">Phase 1 Detailed Plan</div>
+                    <div class="doc-subtitle">Database Migration</div>
+                </div>
+                <div class="doc-content">
+                    <p class="doc-description">
+                        Hour-by-hour breakdown of the initial database migration phase, showing exactly how we'll move your data.
+                    </p>
+                    <span class="doc-link">See Details</span>
+                </div>
+            </a>
+
+            <a href="about.html" class="doc-card">
+                <div class="doc-header">
+                    <div class="doc-icon">🤝</div>
+                    <div class="doc-title">About Value Software</div>
+                    <div class="doc-subtitle">Why Choose Us</div>
+                </div>
+                <div class="doc-content">
+                    <p class="doc-description">
+                        Learn about our team, approach, and why we're the right partner for your digital transformation.
+                    </p>
+                    <span class="doc-link">Meet Our Team</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="intro-card" style="margin-top: 40px;">
+            <h2>Next Steps</h2>
+            <p>After reviewing these documents, I'd love to schedule a call to:</p>
+            <ul style="margin: 20px 0; margin-left: 20px;">
+                <li>Answer any questions you have about the proposal</li>
+                <li>Discuss your specific business requirements in detail</li>
+                <li>Refine the timeline and approach based on your priorities</li>
+                <li>Finalize the contract and get started on transforming your system</li>
+            </ul>
+            <p>Feel free to reach out with any questions or to schedule our next conversation.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>Ready to Transform Your Travel Agency?</h3>
+        <p>Let's build a system that grows with your business.</p>
+        <p style="margin-top: 20px;">
+            Presented by <span class="company-name">Value Software Solutions</span><br>
+            Building Tomorrow's Technology Today
+        </p>
+    </div>
+</body>
+</html>
