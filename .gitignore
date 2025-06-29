@@ -1,0 +1,88 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE and Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Node (if you add any build tools later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Backup files
+*.bak
+*.backup
+*_backup.html
+*_old.html
+
+# Sensitive data (if any)
+config.json
+.env
+.env.local
+secrets/
+
+# Build outputs (if you add any build process)
+dist/
+build/
+out/
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Image source files (keep final images, ignore sources)
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# Documentation drafts
+drafts/
+notes/
+*.draft.html
+
+# Test files
+test/
+*.test.html
+
+# Keep your assets
+!assets/logo.png
+!assets/*.jpg
+!assets/*.jpeg
+!assets/*.svg
+
+# But ignore large video files if added
+*.mp4
+*.mov
+*.avi
+
+# Ignore any client data that shouldn't be public
+client-data/
+private/
+confidential/
