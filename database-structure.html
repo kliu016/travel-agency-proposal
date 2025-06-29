@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Agency Database Schema</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        
+        .schema-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .table-group {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .table-group.primary {
+            background: #e3f2fd;
+            border-color: #2196F3;
+        }
+        
+        .table-group.bookings {
+            background: #f3e5f5;
+            border-color: #9c27b0;
+        }
+        
+        .table-group.support {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+        
+        .group-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .table-box {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .table-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        .table-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .table-fields {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .relationship-diagram {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .relationship-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        
+        .entity-box {
+            background: #f8f9fa;
+            border: 3px solid #2196F3;
+            border-radius: 12px;
+            padding: 20px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .entity-box.main {
+            background: #e3f2fd;
+            border-color: #1976D2;
+            font-size: 1.1em;
+        }
+        
+        .arrow {
+            font-size: 2em;
+            color: #666;
+        }
+        
+        .migration-plan {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .migration-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: #ff9800;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .comparison-side {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .comparison-side.current {
+            border-color: #dc3545;
+        }
+        
+        .comparison-side.new {
+            border-color: #28a745;
+        }
+        
+        .comparison-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .icon {
+            margin-right: 10px;
+        }
+        
+        .red { color: #dc3545; }
+        .green { color: #28a745; }
+        
+        @media (max-width: 768px) {
+            .schema-container {
+                grid-template-columns: 1fr;
+            }
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Future Database Structure</h1>
+        <p class="subtitle">A visual representation of how your data will be organized</p>
+        
+        <div class="comparison-table">
+            <div class="comparison-side current">
+                <div class="comparison-title red">Current: Airtable</div>
+                <ul class="feature-list">
+                    <li><span class="icon red">⚠️</span>All data in one place (gets messy)</li>
+                    <li><span class="icon red">⚠️</span>Limited to 50,000 records per base</li>
+                    <li><span class="icon red">⚠️</span>Slow with large datasets</li>
+                    <li><span class="icon red">⚠️</span>Limited user permissions</li>
+                    <li><span class="icon red">⚠️</span>Basic reporting only</li>
+                </ul>
+            </div>
+            <div class="comparison-side new">
+                <div class="comparison-title green">New: MySQL Database</div>
+                <ul class="feature-list">
+                    <li><span class="icon green">✓</span>Organized, related tables</li>
+                    <li><span class="icon green">✓</span>Unlimited records</li>
+                    <li><span class="icon green">✓</span>Lightning fast searches</li>
+                    <li><span class="icon green">✓</span>Detailed access control</li>
+                    <li><span class="icon green">✓</span>Advanced reporting & analytics</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="relationship-diagram">
+            <h2 style="text-align: center; margin-bottom: 30px;">How Your Data Connects</h2>
+            <div class="relationship-visual">
+                <div class="entity-box main">
+                    <strong>GROUPS</strong><br>
+                    (Your Clients)
+                </div>
+                <div class="arrow">→</div>
+                <div class="entity-box">
+                    <strong>TRAVELERS</strong><br>
+                    (Band Members)
+                </div>
+                <div class="arrow">→</div>
+                <div class="entity-box">
+                    <strong>BOOKINGS</strong><br>
+                    (Flights, Hotels, etc.)
+                </div>
+                <div class="arrow">→</div>
+                <div class="entity-box">
+                    <strong>INVOICES</strong><br>
+                    (Billing)
+                </div>
+            </div>
+            <p style="text-align: center; color: #666; margin-top: 20px;">
+                Each arrow represents a connection. For example: One Group has many Travelers, each Traveler has many Bookings, each Booking has an Invoice.
+            </p>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 30px;">Database Tables Overview</h2>
+        
+        <div class="schema-container">
+            <div class="table-group primary">
+                <div class="group-title">🏢 Core Business Data</div>
+                
+                <div class="table-box">
+                    <div class="table-name">Groups (Clients)</div>
+                    <div class="table-fields">
+                        • Client ID (X635, X636, etc.)<br>
+                        • Band/Artist Name<br>
+                        • Contact Information<br>
+                        • Billing Details<br>
+                        • Credit Card Info
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Travelers</div>
+                    <div class="table-fields">
+                        • Name (First, Last)<br>
+                        • Passport Details<br>
+                        • Date of Birth<br>
+                        • Contact Info<br>
+                        • Link to Group
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Users</div>
+                    <div class="table-fields">
+                        • Login Credentials<br>
+                        • Role (Agent, Manager, etc.)<br>
+                        • Permissions<br>
+                        • Activity Tracking
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-group bookings">
+                <div class="group-title">✈️ Booking Tables</div>
+                
+                <div class="table-box">
+                    <div class="table-name">Air Bookings</div>
+                    <div class="table-fields">
+                        • Flight Details<br>
+                        • Dates & Times<br>
+                        • Airlines & Flight Numbers<br>
+                        • Confirmation Numbers<br>
+                        • Ticket Numbers
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Hotel Transient</div>
+                    <div class="table-fields">
+                        • Individual Bookings<br>
+                        • Check-in/out Dates<br>
+                        • Hotel Information<br>
+                        • Room Details<br>
+                        • Confirmation Numbers
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Hotel Group</div>
+                    <div class="table-fields">
+                        • Group Room Blocks<br>
+                        • Number of Rooms<br>
+                        • Group Rates<br>
+                        • Rooming Lists<br>
+                        • Contract Details
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Chauffer Services</div>
+                    <div class="table-fields">
+                        • Vehicle Type<br>
+                        • Pickup/Dropoff Info<br>
+                        • Driver Details<br>
+                        • Movement Type<br>
+                        • Confirmation Numbers
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Rental Cars</div>
+                    <div class="table-fields">
+                        • Rental Company<br>
+                        • Vehicle Details<br>
+                        • Pickup/Return Dates<br>
+                        • Location Info<br>
+                        • Confirmation Numbers
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Other Bookings</div>
+                    <div class="table-fields">
+                        • Cruises<br>
+                        • Theme Parks<br>
+                        • Special Services<br>
+                        • Custom Bookings
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-group support">
+                <div class="group-title">💼 Supporting Tables</div>
+                
+                <div class="table-box">
+                    <div class="table-name">Invoices</div>
+                    <div class="table-fields">
+                        • Invoice Numbers<br>
+                        • Amounts & Taxes<br>
+                        • Payment Status<br>
+                        • Due Dates<br>
+                        • Links to Bookings
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Passenger Credits</div>
+                    <div class="table-fields">
+                        • Credit Amounts<br>
+                        • Airlines<br>
+                        • Expiration Dates<br>
+                        • MCO Numbers<br>
+                        • Usage Tracking
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Vendor Websites</div>
+                    <div class="table-fields">
+                        • Vendor Names<br>
+                        • Login Credentials<br>
+                        • Website URLs<br>
+                        • Account Numbers<br>
+                        • Notes
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Email Templates</div>
+                    <div class="table-fields">
+                        • Template Names<br>
+                        • Subject Lines<br>
+                        • Email Body<br>
+                        • Template Type<br>
+                        • Active Status
+                    </div>
+                </div>
+                
+                <div class="table-box">
+                    <div class="table-name">Audit Log</div>
+                    <div class="table-fields">
+                        • All Changes Tracked<br>
+                        • Who Made Changes<br>
+                        • When Changes Made<br>
+                        • What Was Changed<br>
+                        • Previous Values
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="migration-plan">
+            <h2 style="text-align: center; margin-top: 0;">Migration Process</h2>
+            
+            <div class="migration-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Export from Airtable</div>
+                    <div>We'll export all your data from Airtable in a structured format</div>
+                </div>
+            </div>
+            
+            <div class="migration-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Clean & Transform Data</div>
+                    <div>Remove duplicates, fix formatting issues, and prepare for import</div>
+                </div>
+            </div>
+            
+            <div class="migration-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Import to MySQL</div>
+                    <div>Load data into the new database with proper relationships</div>
+                </div>
+            </div>
+            
+            <div class="migration-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Validate Everything</div>
+                    <div>Check that all records transferred correctly and relationships work</div>
+                </div>
+            </div>
+            
+            <div class="migration-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-title">Test with Real Scenarios</div>
+                    <div>Run through actual booking workflows to ensure everything works</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: #e8f5e9; border-radius: 15px; padding: 30px; text-align: center;">
+            <h3 style="color: #2e7d32; margin-top: 0;">Key Benefits of This Structure</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left; margin-top: 20px;">
+                <div>
+                    <strong>🚀 Speed:</strong> Find any booking in seconds, not minutes
+                </div>
+                <div>
+                    <strong>🔒 Security:</strong> Control exactly who sees what data
+                </div>
+                <div>
+                    <strong>📊 Reporting:</strong> Generate complex reports instantly
+                </div>
+                <div>
+                    <strong>🔄 Automation:</strong> Reduce manual data entry by 80%
+                </div>
+                <div>
+                    <strong>📈 Scalability:</strong> Handle 10x more bookings without slowing down
+                </div>
+                <div>
+                    <strong>🛡️ Reliability:</strong> Automatic backups, never lose data
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

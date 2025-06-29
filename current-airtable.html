@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Travel Agency - Current Airtable Structure</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6B46C1 0%, #9333EA 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .overview-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border-left: 4px solid #9333EA;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #6B46C1;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .table-documentation {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+        
+        .table-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .record-count {
+            background: #e9d5ff;
+            color: #6B46C1;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .field-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .field-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 200px 150px 1fr;
+            gap: 20px;
+            align-items: center;
+            border-left: 3px solid #e9ecef;
+        }
+        
+        .field-item.key-field {
+            background: #f3e8ff;
+            border-left-color: #9333EA;
+        }
+        
+        .field-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .field-type {
+            background: #e3f2fd;
+            color: #1976D2;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        
+        .field-description {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .relationship-section {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .relationship-diagram {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .relationship-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .rel-table {
+            background: #6B46C1;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .rel-arrow {
+            margin: 0 20px;
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        
+        .rel-field {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .automation-section {
+            background: #dbeafe;
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .automation-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .automation-name {
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+        
+        .automation-trigger {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .form-section {
+            background: #d1fae5;
+            border: 2px solid #10b981;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .form-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .form-icon {
+            font-size: 2em;
+            margin-right: 20px;
+        }
+        
+        .form-details {
+            flex: 1;
+        }
+        
+        .form-name {
+            font-weight: bold;
+            color: #047857;
+        }
+        
+        .form-table {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .interface-section {
+            background: #fce7f3;
+            border: 2px solid #ec4899;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .field-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Current Airtable Database Structure</h1>
+        <div class="subtitle">The Travel Agency - Complete Documentation</div>
+    </div>
+
+    <div class="overview-section">
+        <h2 style="margin-top: 0;">Database Overview</h2>
+        <p>The Travel Agency currently manages all operations through a single Airtable base with multiple interconnected tables. This system handles everything from client management to booking tracking and automated notifications.</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">13</div>
+                <div class="stat-label">Main Tables</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">175+</div>
+                <div class="stat-label">Groups (Clients)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">889+</div>
+                <div class="stat-label">Travelers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2,185+</div>
+                <div class="stat-label">Air Bookings</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Automations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Forms</div>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="text-align: center; margin: 40px 0;">Table Structures</h2>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🏢 Group (Clients - Current)</div>
+            <div class="record-count">175 groups</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item key-field">
+                <div class="field-name">CLIENT_ID</div>
+                <div class="field-type">Text (Primary)</div>
+                <div class="field-description">Unique identifier (X635, X636, etc.)</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Name</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Band/Artist/Company name</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">GDS CC</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Credit card information for bookings</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">GDS CC ADDRESS</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Billing address</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">GDS CLIENT</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Client name for GDS system</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">INVOICE CODE</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Code for invoice generation</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Contact Info</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Primary contact details</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">👥 Traveler</div>
+            <div class="record-count">889 records</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">NAME</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Full name (LASTNAME/FIRSTNAME format)</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">FIRSTNAME</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Traveler's first name</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">LASTNAME</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Traveler's last name</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Client ID</div>
+                <div class="field-type">Link to Group</div>
+                <div class="field-description">Links traveler to their group</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Client Name</div>
+                <div class="field-type">Lookup</div>
+                <div class="field-description">Auto-populated from Group</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">3DOB</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Date of birth (encrypted/formatted)</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">3PP</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Passport number (encrypted)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">✈️ Air</div>
+            <div class="record-count">2,185 records</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">Departure Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Flight departure date</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Traveler</div>
+                <div class="field-type">Link to Traveler</div>
+                <div class="field-description">Links to specific traveler</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Client</div>
+                <div class="field-type">Link to Group</div>
+                <div class="field-description">Links to client/group</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Airline-1</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">First flight airline</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Flight #-1</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">First flight number</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Departure Airport</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">3-letter airport code</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Departure Time</div>
+                <div class="field-type">Time</div>
+                <div class="field-description">Scheduled departure time</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Arrival Airport</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">3-letter airport code</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🏨 Hotel (Transient)</div>
+            <div class="record-count">546 records</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">C/I Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Check-in date</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Folio Sent to TM</div>
+                <div class="field-type">Checkbox</div>
+                <div class="field-description">Tracking if folio was sent</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">CCA Submitted</div>
+                <div class="field-type">Checkbox</div>
+                <div class="field-description">Credit card authorization status</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">CCA</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">CCA number/details</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Notes</div>
+                <div class="field-type">Long Text</div>
+                <div class="field-description">Special requests, notes</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">VVIP</div>
+                <div class="field-type">Checkbox</div>
+                <div class="field-description">VIP guest indicator</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🏨 Hotel (Group)</div>
+            <div class="record-count">104 groups</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">C/I Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Group check-in date</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">C/O Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Group check-out date</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Client</div>
+                <div class="field-type">Link to Group</div>
+                <div class="field-description">Links to client/group</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Touring Party</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Band/crew designation</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Hotel</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Hotel name and location</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Net Rate</div>
+                <div class="field-type">Currency</div>
+                <div class="field-description">Room rate before tax</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Tax Rate</div>
+                <div class="field-type">Currency</div>
+                <div class="field-description">Tax amount per room</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Gross Rate</div>
+                <div class="field-type">Currency</div>
+                <div class="field-description">Total rate including tax</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name"># of Rooms</div>
+                <div class="field-type">Number</div>
+                <div class="field-description">Total rooms in block</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🚗 Chauffer Vehicles</div>
+            <div class="record-count">Active bookings</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Service date</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Traveler</div>
+                <div class="field-type">Link to Traveler</div>
+                <div class="field-description">Links to specific traveler</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Client</div>
+                <div class="field-type">Link to Group</div>
+                <div class="field-description">Links to client/group</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Movement Type</div>
+                <div class="field-type">Select</div>
+                <div class="field-description">Airport Transfer, Rider Directed, etc.</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Provider</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Service company name</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Vehicle Type</div>
+                <div class="field-type">Select</div>
+                <div class="field-description">SUV, Sedan, Van, etc.</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Confirmation Number</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Booking confirmation</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🚙 Rental Vehicles</div>
+            <div class="record-count">Active rentals</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Booking date</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Traveler</div>
+                <div class="field-type">Link to Traveler</div>
+                <div class="field-description">Links to specific traveler</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Client</div>
+                <div class="field-type">Link to Group</div>
+                <div class="field-description">Links to client/group</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Provider</div>
+                <div class="field-type">Select</div>
+                <div class="field-description">Rental company (Hertz, Enterprise, etc.)</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Pick Up Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Rental start date</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Pick Up Location</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Airport or city location</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Drop Off Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Rental return date</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">💳 Passenger Credits</div>
+            <div class="record-count">1 record</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">Credit ID</div>
+                <div class="field-type">Number</div>
+                <div class="field-description">Unique credit identifier</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Expiration Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">When credit expires</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Traveler</div>
+                <div class="field-type">Link to Traveler</div>
+                <div class="field-description">Credit owner</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Airline</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Issuing airline</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Amount</div>
+                <div class="field-type">Currency</div>
+                <div class="field-description">Credit value</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">MCO/Ticket #</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Reference number</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🌐 Vendor Websites</div>
+            <div class="record-count">43 vendors</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">Name</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Vendor/airline/hotel name</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Vendor Type</div>
+                <div class="field-type">Select</div>
+                <div class="field-description">Airline, Hotel, Vacation Package, etc.</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Website</div>
+                <div class="field-type">URL</div>
+                <div class="field-description">Login URL</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Login</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Username/email</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Password</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Login credentials</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🎫 Other (Commissionable)</div>
+            <div class="record-count">7 records</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Service date</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">NAME</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Traveler name</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Clients</div>
+                <div class="field-type">Link to Group</div>
+                <div class="field-description">Links to client/group</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Type</div>
+                <div class="field-type">Select</div>
+                <div class="field-description">Disney, Airport Greeter, Cruise, etc.</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Supplier</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Service provider</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Details</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Booking specifics</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Total Rate</div>
+                <div class="field-type">Currency</div>
+                <div class="field-description">Total cost</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="relationship-section">
+        <h2 style="margin-top: 0;">🔗 Key Relationships</h2>
+        <p>The database uses Airtable's linking feature to connect related records:</p>
+        
+        <div class="relationship-diagram">
+            <div class="relationship-item">
+                <span class="rel-table">Group</span>
+                <span class="rel-arrow">→</span>
+                <span class="rel-table">Traveler</span>
+                <span class="rel-field">(via Client ID field)</span>
+            </div>
+            
+            <div class="relationship-item">
+                <span class="rel-table">Traveler</span>
+                <span class="rel-arrow">→</span>
+                <span class="rel-table">Air Bookings</span>
+                <span class="rel-field">(via Traveler field)</span>
+            </div>
+            
+            <div class="relationship-item">
+                <span class="rel-table">Group</span>
+                <span class="rel-arrow">→</span>
+                <span class="rel-table">All Booking Types</span>
+                <span class="rel-field">(via Client field)</span>
+            </div>
+            
+            <div class="relationship-item">
+                <span class="rel-table">Traveler</span>
+                <span class="rel-arrow">→</span>
+                <span class="rel-table">Hotel (Transient)</span>
+                <span class="rel-field">(via Traveler field)</span>
+            </div>
+            
+            <div class="relationship-item">
+                <span class="rel-table">Traveler</span>
+                <span class="rel-arrow">→</span>
+                <span class="rel-table">Chauffer/Rental</span>
+                <span class="rel-field">(via Traveler field)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="automation-section">
+        <h2 style="margin-top: 0;">⚡ Current Automations</h2>
+        <p>These automations run automatically to keep the team informed:</p>
+        
+        <div class="automation-item">
+            <div class="automation-name">TTA - Air Week Ahead</div>
+            <div class="automation-trigger">Scheduled: Runs every week to find upcoming flights and send summary email</div>
+        </div>
+        
+        <div class="automation-item">
+            <div class="automation-name">TTA - New Client Notification</div>
+            <div class="automation-trigger">Triggered: When a new client record is created, sends notification email</div>
+        </div>
+        
+        <div class="automation-item">
+            <div class="automation-name">TTA - VVIP Hotel (Transient) - 7 Day Outlook</div>
+            <div class="automation-trigger">Scheduled: Daily check for VIP guests arriving in next 7 days</div>
+        </div>
+        
+        <div class="automation-item">
+            <div class="automation-name">TTA - Group Hotel - 7 Day Outlook</div>
+            <div class="automation-trigger">Scheduled: Daily check for group arrivals in next 7 days</div>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <h2 style="margin-top: 0;">📝 Data Entry Forms</h2>
+        <p>Forms used for adding new data to the system:</p>
+        
+        <div class="form-item">
+            <div class="form-icon">👤</div>
+            <div class="form-details">
+                <div class="form-name">TTA-New Passenger Enroll</div>
+                <div class="form-table">Adds new travelers to the Traveler table</div>
+            </div>
+        </div>
+        
+        <div class="form-item">
+            <div class="form-icon">🏢</div>
+            <div class="form-details">
+                <div class="form-name">TTA-New Client Enroll</div>
+                <div class="form-table">Adds new groups/clients to the Group table</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interface-section">
+        <h2 style="margin-top: 0;">💻 Interface</h2>
+        <p>Custom interface for managing operations:</p>
+        
+        <div class="form-item">
+            <div class="form-icon">📊</div>
+            <div class="form-details">
+                <div class="form-name">Hotel (Transient) Invoice Tracking and Folio Management</div>
+                <div class="form-table">Tracks invoice status, TPI submissions, and folio management for individual hotel bookings</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #f0fdf4; border-radius: 15px; padding: 30px; text-align: center; margin-top: 40px;">
+        <h3 style="color: #15803d; margin-top: 0;">Migration Considerations</h3>
+        <p style="margin-bottom: 0;">This structure will be normalized and optimized in the MySQL database,<br>
+        with proper indexes, constraints, and relationships to ensure data integrity and performance.</p>
+    </div>
+</body>
+</html>
