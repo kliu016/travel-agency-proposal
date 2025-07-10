@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Agency Database Schema</title>
+    <title>Travel Agency Database Schema - Comprehensive Structure</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -35,6 +35,15 @@
             font-size: 1.1em;
         }
         
+        .update-banner {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
         .schema-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -49,7 +58,7 @@
             border: 2px solid #e9ecef;
         }
         
-        .table-group.primary {
+        .table-group.core {
             background: #e3f2fd;
             border-color: #2196F3;
         }
@@ -88,11 +97,32 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
         
+        .table-box.expanded {
+            border-left: 4px solid #4caf50;
+        }
+        
         .table-name {
             font-weight: 600;
             color: #2c3e50;
             margin-bottom: 8px;
             font-size: 1.1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .field-count {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        .field-count.major {
+            background: #fff3e0;
+            color: #f57c00;
         }
         
         .table-fields {
@@ -138,46 +168,45 @@
             color: #666;
         }
         
-        .migration-plan {
-            background: #fff3e0;
-            border: 2px solid #ff9800;
-            border-radius: 15px;
-            padding: 30px;
+        .comprehensive-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
             margin-bottom: 40px;
         }
         
-        .migration-step {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+        .detail-card {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-top: 4px solid #4caf50;
         }
         
-        .step-number {
-            background: #ff9800;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
-        
-        .step-content {
-            flex: 1;
-        }
-        
-        .step-title {
+        .detail-title {
+            font-size: 1.3em;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
             color: #2c3e50;
+        }
+        
+        .field-category {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .category-title {
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 5px;
+        }
+        
+        .category-fields {
+            font-size: 0.9em;
+            color: #666;
         }
         
         .comparison-table {
@@ -233,43 +262,56 @@
             .comparison-table {
                 grid-template-columns: 1fr;
             }
+            .comprehensive-details {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Future Database Structure</h1>
-        <p class="subtitle">A visual representation of how your data will be organized</p>
+        <h1>Comprehensive Database Structure</h1>
+        <p class="subtitle">Professional MySQL architecture for complete travel agency operations</p>
         
+        <div class="update-banner">
+            <h3 style="margin-top: 0; color: #2e7d32;">🚀 Major Enhancement</h3>
+            <p style="margin-bottom: 0;">Updated to reflect Kyle's comprehensive field requirements: 80+ traveler fields, 100+ client fields, and complete user management system. All references to "Groups" updated to "Clients".</p>
+        </div>
+
         <div class="comparison-table">
             <div class="comparison-side current">
-                <div class="comparison-title red">Current: Airtable</div>
+                <div class="comparison-title red">Current: Airtable Structure</div>
                 <ul class="feature-list">
-                    <li><span class="icon red">⚠️</span>All data in one place (gets messy)</li>
-                    <li><span class="icon red">⚠️</span>Limited to 50,000 records per base</li>
-                    <li><span class="icon red">⚠️</span>Slow with large datasets</li>
-                    <li><span class="icon red">⚠️</span>Limited user permissions</li>
-                    <li><span class="icon red">⚠️</span>Basic reporting only</li>
+                    <li><span class="icon red">⚠️</span>175 Clients with 7 basic fields</li>
+                    <li><span class="icon red">⚠️</span>889 Travelers with 7 basic fields</li>
+                    <li><span class="icon red">⚠️</span>Limited relationship tracking</li>
+                    <li><span class="icon red">⚠️</span>No user management system</li>
+                    <li><span class="icon red">⚠️</span>Basic booking structure</li>
                 </ul>
             </div>
             <div class="comparison-side new">
-                <div class="comparison-title green">New: MySQL Database</div>
+                <div class="comparison-title green">New: Comprehensive MySQL</div>
                 <ul class="feature-list">
-                    <li><span class="icon green">✓</span>Organized, related tables</li>
-                    <li><span class="icon green">✓</span>Unlimited records</li>
-                    <li><span class="icon green">✓</span>Lightning fast searches</li>
-                    <li><span class="icon green">✓</span>Detailed access control</li>
-                    <li><span class="icon green">✓</span>Advanced reporting & analytics</li>
+                    <li><span class="icon green">✓</span>Clients with 100+ detailed fields</li>
+                    <li><span class="icon green">✓</span>Travelers with 80+ comprehensive fields</li>
+                    <li><span class="icon green">✓</span>Complete relationship management</li>
+                    <li><span class="icon green">✓</span>Role-based user system</li>
+                    <li><span class="icon green">✓</span>Professional booking architecture</li>
                 </ul>
             </div>
         </div>
 
         <div class="relationship-diagram">
-            <h2 style="text-align: center; margin-bottom: 30px;">How Your Data Connects</h2>
+            <h2 style="text-align: center; margin-bottom: 30px;">Enhanced Data Relationships</h2>
             <div class="relationship-visual">
                 <div class="entity-box main">
-                    <strong>GROUPS</strong><br>
-                    (Your Clients)
+                    <strong>USERS</strong><br>
+                    (Agents, Admins)
+                </div>
+                <div class="arrow">→</div>
+                <div class="entity-box main">
+                    <strong>CLIENTS</strong><br>
+                    (Bands, Companies)
                 </div>
                 <div class="arrow">→</div>
                 <div class="entity-box">
@@ -279,251 +321,263 @@
                 <div class="arrow">→</div>
                 <div class="entity-box">
                     <strong>BOOKINGS</strong><br>
-                    (Flights, Hotels, etc.)
-                </div>
-                <div class="arrow">→</div>
-                <div class="entity-box">
-                    <strong>INVOICES</strong><br>
-                    (Billing)
+                    (All Types)
                 </div>
             </div>
             <p style="text-align: center; color: #666; margin-top: 20px;">
-                Each arrow represents a connection. For example: One Group has many Travelers, each Traveler has many Bookings, each Booking has an Invoice.
+                Each booking now includes Agent_ID, Client_ID, and Traveler_ID for complete tracking and role-based access control.
             </p>
         </div>
 
-        <h2 style="text-align: center; margin-bottom: 30px;">Database Tables Overview</h2>
+        <h2 style="text-align: center; margin-bottom: 30px;">Comprehensive Table Structure</h2>
         
         <div class="schema-container">
-            <div class="table-group primary">
-                <div class="group-title">🏢 Core Business Data</div>
+            <div class="table-group core">
+                <div class="group-title">👥 Core Business Data</div>
                 
-                <div class="table-box">
-                    <div class="table-name">Groups (Clients)</div>
+                <div class="table-box expanded">
+                    <div class="table-name">
+                        Clients (formerly Groups)
+                        <span class="field-count major">100+ fields</span>
+                    </div>
                     <div class="table-fields">
-                        • Client ID (X635, X636, etc.)<br>
-                        • Band/Artist Name<br>
-                        • Contact Information<br>
-                        • Billing Details<br>
-                        • Credit Card Info
+                        • Complete company information<br>
+                        • Multiple credit cards (3 sets)<br>
+                        • Corporate program memberships<br>
+                        • Agent assignments & billing rates<br>
+                        • Contract documents & agreements
                     </div>
                 </div>
                 
-                <div class="table-box">
-                    <div class="table-name">Travelers</div>
+                <div class="table-box expanded">
+                    <div class="table-name">
+                        Travelers
+                        <span class="field-count major">80+ fields</span>
+                    </div>
                     <div class="table-fields">
-                        • Name (First, Last)<br>
-                        • Passport Details<br>
-                        • Date of Birth<br>
-                        • Contact Info<br>
-                        • Link to Group
+                        • Multiple passport support (2 sets)<br>
+                        • Emergency contact information<br>
+                        • Frequent flyer programs (9 airlines)<br>
+                        • Hotel loyalty programs (7 chains)<br>
+                        • Travel preferences & special requirements
                     </div>
                 </div>
                 
-                <div class="table-box">
-                    <div class="table-name">Users</div>
+                <div class="table-box expanded">
+                    <div class="table-name">
+                        Users
+                        <span class="field-count">17 fields</span>
+                    </div>
                     <div class="table-fields">
-                        • Login Credentials<br>
-                        • Role (Agent, Manager, etc.)<br>
-                        • Permissions<br>
-                        • Activity Tracking
+                        • Authentication & security<br>
+                        • Role-based permissions<br>
+                        • Client access control<br>
+                        • Activity tracking & audit
                     </div>
                 </div>
             </div>
             
             <div class="table-group bookings">
-                <div class="group-title">✈️ Booking Tables</div>
+                <div class="group-title">✈️ Enhanced Booking Tables</div>
                 
                 <div class="table-box">
                     <div class="table-name">Air Bookings</div>
                     <div class="table-fields">
-                        • Flight Details<br>
-                        • Dates & Times<br>
-                        • Airlines & Flight Numbers<br>
-                        • Confirmation Numbers<br>
-                        • Ticket Numbers
+                        • Agent_ID, Client_ID, Traveler_ID<br>
+                        • Complete flight details<br>
+                        • Multiple segments support<br>
+                        • Booking source tracking
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Hotel Transient</div>
                     <div class="table-fields">
-                        • Individual Bookings<br>
-                        • Check-in/out Dates<br>
-                        • Hotel Information<br>
-                        • Room Details<br>
-                        • Confirmation Numbers
+                        • Individual reservations<br>
+                        • Folio management<br>
+                        • CCA tracking<br>
+                        • VVIP status handling
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Hotel Group</div>
                     <div class="table-fields">
-                        • Group Room Blocks<br>
-                        • Number of Rooms<br>
-                        • Group Rates<br>
-                        • Rooming Lists<br>
-                        • Contract Details
+                        • Group room blocks<br>
+                        • Rate management<br>
+                        • Rooming list tracking<br>
+                        • Contract details
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Chauffer Services</div>
                     <div class="table-fields">
-                        • Vehicle Type<br>
-                        • Pickup/Dropoff Info<br>
-                        • Driver Details<br>
-                        • Movement Type<br>
-                        • Confirmation Numbers
+                        • Ground transportation<br>
+                        • Vehicle type management<br>
+                        • Provider tracking<br>
+                        • Movement type classification
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Rental Cars</div>
                     <div class="table-fields">
-                        • Rental Company<br>
-                        • Vehicle Details<br>
-                        • Pickup/Return Dates<br>
-                        • Location Info<br>
-                        • Confirmation Numbers
+                        • Car rental bookings<br>
+                        • Provider management<br>
+                        • Location tracking<br>
+                        • Duration management
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Other Bookings</div>
                     <div class="table-fields">
-                        • Cruises<br>
-                        • Theme Parks<br>
-                        • Special Services<br>
-                        • Custom Bookings
+                        • Disney, Cruises, etc.<br>
+                        • Custom service types<br>
+                        • Supplier management<br>
+                        • Commission tracking
                     </div>
                 </div>
             </div>
             
             <div class="table-group support">
-                <div class="group-title">💼 Supporting Tables</div>
+                <div class="group-title">💼 Supporting Infrastructure</div>
                 
                 <div class="table-box">
                     <div class="table-name">Invoices</div>
                     <div class="table-fields">
-                        • Invoice Numbers<br>
-                        • Amounts & Taxes<br>
-                        • Payment Status<br>
-                        • Due Dates<br>
-                        • Links to Bookings
+                        • QuickBooks integration ready<br>
+                        • Multi-currency support<br>
+                        • Payment tracking<br>
+                        • Commission calculations
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Passenger Credits</div>
                     <div class="table-fields">
-                        • Credit Amounts<br>
-                        • Airlines<br>
-                        • Expiration Dates<br>
-                        • MCO Numbers<br>
-                        • Usage Tracking
+                        • Airline credit tracking<br>
+                        • Expiration management<br>
+                        • Usage history<br>
+                        • MCO number tracking
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Vendor Websites</div>
                     <div class="table-fields">
-                        • Vendor Names<br>
-                        • Login Credentials<br>
-                        • Website URLs<br>
-                        • Account Numbers<br>
-                        • Notes
+                        • Secure credential storage<br>
+                        • 43+ vendor management<br>
+                        • Login URL tracking<br>
+                        • Account number management
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Email Templates</div>
                     <div class="table-fields">
-                        • Template Names<br>
-                        • Subject Lines<br>
-                        • Email Body<br>
-                        • Template Type<br>
-                        • Active Status
+                        • Commission communications<br>
+                        • Rooming list formats<br>
+                        • Template versioning<br>
+                        • Multi-language support
                     </div>
                 </div>
                 
                 <div class="table-box">
                     <div class="table-name">Audit Log</div>
                     <div class="table-fields">
-                        • All Changes Tracked<br>
-                        • Who Made Changes<br>
-                        • When Changes Made<br>
-                        • What Was Changed<br>
-                        • Previous Values
+                        • Complete change tracking<br>
+                        • User activity logs<br>
+                        • Data integrity monitoring<br>
+                        • Compliance reporting
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="migration-plan">
-            <h2 style="text-align: center; margin-top: 0;">Migration Process</h2>
-            
-            <div class="migration-step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <div class="step-title">Export from Airtable</div>
-                    <div>We'll export all your data from Airtable in a structured format</div>
+        <h2 style="text-align: center; margin-bottom: 30px;">Detailed Field Breakdown</h2>
+        
+        <div class="comprehensive-details">
+            <div class="detail-card">
+                <div class="detail-title">Client Profile (100+ Fields)</div>
+                
+                <div class="field-category">
+                    <div class="category-title">Company Information</div>
+                    <div class="category-fields">Basic details, tax info, W9, addresses, contacts</div>
+                </div>
+                
+                <div class="field-category">
+                    <div class="category-title">Payment Methods</div>
+                    <div class="category-fields">3 complete credit card sets with scans and billing addresses</div>
+                </div>
+                
+                <div class="field-category">
+                    <div class="category-title">Corporate Programs</div>
+                    <div class="category-fields">Airline business programs, car rental contracts, hotel corporate rates</div>
+                </div>
+                
+                <div class="field-category">
+                    <div class="category-title">Team Assignments</div>
+                    <div class="category-fields">Lead agents, coordinators, finance contacts, assigned agents</div>
+                </div>
+                
+                <div class="field-category">
+                    <div class="category-title">Billing & Rates</div>
+                    <div class="category-fields">Service rates, net terms, fees, commission structures</div>
                 </div>
             </div>
             
-            <div class="migration-step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <div class="step-title">Clean & Transform Data</div>
-                    <div>Remove duplicates, fix formatting issues, and prepare for import</div>
+            <div class="detail-card">
+                <div class="detail-title">Traveler Profile (80+ Fields)</div>
+                
+                <div class="field-category">
+                    <div class="category-title">Personal Information</div>
+                    <div class="category-fields">Complete name, DOB, nationality, type (VIP/Crew), contacts</div>
                 </div>
-            </div>
-            
-            <div class="migration-step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <div class="step-title">Import to MySQL</div>
-                    <div>Load data into the new database with proper relationships</div>
+                
+                <div class="field-category">
+                    <div class="category-title">Travel Documents</div>
+                    <div class="category-fields">2 complete passport sets with scans, TSA PreCheck/Global Entry</div>
                 </div>
-            </div>
-            
-            <div class="migration-step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <div class="step-title">Validate Everything</div>
-                    <div>Check that all records transferred correctly and relationships work</div>
+                
+                <div class="field-category">
+                    <div class="category-title">Loyalty Programs</div>
+                    <div class="category-fields">9 airline FF programs, 7 hotel loyalty programs, rail/car programs</div>
                 </div>
-            </div>
-            
-            <div class="migration-step">
-                <div class="step-number">5</div>
-                <div class="step-content">
-                    <div class="step-title">Test with Real Scenarios</div>
-                    <div>Run through actual booking workflows to ensure everything works</div>
+                
+                <div class="field-category">
+                    <div class="category-title">Preferences</div>
+                    <div class="category-fields">Seat preferences, meal requirements, accessibility needs</div>
+                </div>
+                
+                <div class="field-category">
+                    <div class="category-title">Emergency Contacts</div>
+                    <div class="category-fields">Complete emergency contact information and relationships</div>
                 </div>
             </div>
         </div>
 
         <div style="background: #e8f5e9; border-radius: 15px; padding: 30px; text-align: center;">
-            <h3 style="color: #2e7d32; margin-top: 0;">Key Benefits of This Structure</h3>
+            <h3 style="color: #2e7d32; margin-top: 0;">Enterprise-Grade Foundation</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left; margin-top: 20px;">
                 <div>
-                    <strong>🚀 Speed:</strong> Find any booking in seconds, not minutes
+                    <strong>🎯 Complete Profiles:</strong> Every field Kyle needs for professional operations
                 </div>
                 <div>
-                    <strong>🔒 Security:</strong> Control exactly who sees what data
+                    <strong>🔐 Security Ready:</strong> Role-based access, audit trails, encrypted sensitive data
                 </div>
                 <div>
-                    <strong>📊 Reporting:</strong> Generate complex reports instantly
+                    <strong>📊 Integration Ready:</strong> Prepared for Sabre API, QuickBooks, and future enhancements
                 </div>
                 <div>
-                    <strong>🔄 Automation:</strong> Reduce manual data entry by 80%
+                    <strong>⚡ Performance Optimized:</strong> Properly indexed for fast queries on large datasets
                 </div>
                 <div>
-                    <strong>📈 Scalability:</strong> Handle 10x more bookings without slowing down
+                    <strong>📈 Scalable Architecture:</strong> Handles 10x growth without structural changes
                 </div>
                 <div>
-                    <strong>🛡️ Reliability:</strong> Automatic backups, never lose data
+                    <strong>🛡️ Data Integrity:</strong> Foreign keys, constraints, and validation rules throughout
                 </div>
             </div>
         </div>

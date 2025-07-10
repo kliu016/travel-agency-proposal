@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Travel Agency - Current Airtable Structure</title>
+    <title>The Travel Agency - Current Airtable Structure Analysis</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -35,6 +35,14 @@
             font-size: 1.2em;
             opacity: 0.9;
             margin-top: 10px;
+        }
+        
+        .migration-context {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
         }
         
         .overview-section {
@@ -71,6 +79,28 @@
             margin-top: 5px;
         }
         
+        .limitations-section {
+            background: #fde2e2;
+            border: 2px solid #dc2626;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .limitations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .limitation-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #dc2626;
+        }
+        
         .table-documentation {
             background: white;
             border-radius: 15px;
@@ -100,6 +130,14 @@
             padding: 6px 15px;
             border-radius: 20px;
             font-weight: 500;
+        }
+        
+        .expansion-note {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
         }
         
         .field-list {
@@ -265,13 +303,18 @@
 </head>
 <body>
     <div class="header">
-        <h1>Current Airtable Database Structure</h1>
-        <div class="subtitle">The Travel Agency - Complete Documentation</div>
+        <h1>Current Airtable System Analysis</h1>
+        <div class="subtitle">Complete documentation for migration to comprehensive MySQL structure</div>
+    </div>
+
+    <div class="migration-context">
+        <h2 style="margin-top: 0; color: #f57c00;">Migration Context</h2>
+        <p>This analysis documents The Travel Agency's current Airtable structure, which will be migrated to a comprehensive MySQL database with significantly expanded functionality. The current system serves as the foundation, but the new system will include 80+ traveler fields and 100+ client fields to support professional operations.</p>
     </div>
 
     <div class="overview-section">
-        <h2 style="margin-top: 0;">Database Overview</h2>
-        <p>The Travel Agency currently manages all operations through a single Airtable base with multiple interconnected tables. This system handles everything from client management to booking tracking and automated notifications.</p>
+        <h2 style="margin-top: 0;">Current System Overview</h2>
+        <p>The Travel Agency currently manages all operations through a single Airtable base with multiple interconnected tables. While functional, this system has reached its limits and lacks the comprehensive data structure needed for professional travel agency operations.</p>
         
         <div class="stats-grid">
             <div class="stat-card">
@@ -280,7 +323,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-number">175+</div>
-                <div class="stat-label">Groups (Clients)</div>
+                <div class="stat-label">Clients (Groups)</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">889+</div>
@@ -292,21 +335,58 @@
             </div>
             <div class="stat-card">
                 <div class="stat-number">4</div>
-                <div class="stat-label">Automations</div>
+                <div class="stat-label">Active Automations</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">2</div>
-                <div class="stat-label">Forms</div>
+                <div class="stat-label">Data Entry Forms</div>
             </div>
         </div>
     </div>
 
-    <h2 style="text-align: center; margin: 40px 0;">Table Structures</h2>
+    <div class="limitations-section">
+        <h2 style="margin-top: 0; color: #dc2626;">Current System Limitations</h2>
+        <p>These limitations drive the need for migration to a comprehensive MySQL structure:</p>
+        
+        <div class="limitations-grid">
+            <div class="limitation-item">
+                <h4>Insufficient Data Fields</h4>
+                <p>Current clients have only 7 basic fields vs. the needed 100+ comprehensive fields for professional operations.</p>
+            </div>
+            
+            <div class="limitation-item">
+                <h4>Limited Traveler Profiles</h4>
+                <p>Travelers have just 7 fields vs. the required 80+ fields for complete passport, loyalty, and preference management.</p>
+            </div>
+            
+            <div class="limitation-item">
+                <h4>No User Management</h4>
+                <p>No role-based access control system for agents, clients, and travelers with different permission levels.</p>
+            </div>
+            
+            <div class="limitation-item">
+                <h4>Scale Limitations</h4>
+                <p>Approaching Airtable's 50,000 record limit with performance degradation on large datasets.</p>
+            </div>
+            
+            <div class="limitation-item">
+                <h4>Security Concerns</h4>
+                <p>Basic field-level security vs. needed encrypted storage for sensitive financial and personal data.</p>
+            </div>
+            
+            <div class="limitation-item">
+                <h4>Integration Challenges</h4>
+                <p>Limited API capabilities for Sabre integration and QuickBooks connectivity needed for professional operations.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="text-align: center; margin: 40px 0;">Current Table Structures</h2>
 
     <div class="table-documentation">
         <div class="table-header">
-            <div class="table-name">🏢 Group (Clients - Current)</div>
-            <div class="record-count">175 groups</div>
+            <div class="table-name">🏢 Clients (Currently "Groups")</div>
+            <div class="record-count">175 records</div>
         </div>
         <div class="field-list">
             <div class="field-item key-field">
@@ -345,11 +425,14 @@
                 <div class="field-description">Primary contact details</div>
             </div>
         </div>
+        <div class="expansion-note">
+            <strong>⚡ Migration Enhancement:</strong> This will expand to 100+ fields including multiple credit cards, corporate programs, team assignments, billing rates, and complete company profiles.
+        </div>
     </div>
 
     <div class="table-documentation">
         <div class="table-header">
-            <div class="table-name">👥 Traveler</div>
+            <div class="table-name">👥 Travelers</div>
             <div class="record-count">889 records</div>
         </div>
         <div class="field-list">
@@ -370,13 +453,13 @@
             </div>
             <div class="field-item key-field">
                 <div class="field-name">Client ID</div>
-                <div class="field-type">Link to Group</div>
-                <div class="field-description">Links traveler to their group</div>
+                <div class="field-type">Link to Client</div>
+                <div class="field-description">Links traveler to their client</div>
             </div>
             <div class="field-item">
                 <div class="field-name">Client Name</div>
                 <div class="field-type">Lookup</div>
-                <div class="field-description">Auto-populated from Group</div>
+                <div class="field-description">Auto-populated from Client</div>
             </div>
             <div class="field-item">
                 <div class="field-name">3DOB</div>
@@ -389,11 +472,14 @@
                 <div class="field-description">Passport number (encrypted)</div>
             </div>
         </div>
+        <div class="expansion-note">
+            <strong>⚡ Migration Enhancement:</strong> This will expand to 80+ fields including multiple passports, emergency contacts, frequent flyer programs, hotel loyalty, travel preferences, and complete personal profiles.
+        </div>
     </div>
 
     <div class="table-documentation">
         <div class="table-header">
-            <div class="table-name">✈️ Air</div>
+            <div class="table-name">✈️ Air Bookings</div>
             <div class="record-count">2,185 records</div>
         </div>
         <div class="field-list">
@@ -409,96 +495,8 @@
             </div>
             <div class="field-item key-field">
                 <div class="field-name">Client</div>
-                <div class="field-type">Link to Group</div>
-                <div class="field-description">Links to client/group</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">Airline-1</div>
-                <div class="field-type">Text</div>
-                <div class="field-description">First flight airline</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">Flight #-1</div>
-                <div class="field-type">Text</div>
-                <div class="field-description">First flight number</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">Departure Airport</div>
-                <div class="field-type">Text</div>
-                <div class="field-description">3-letter airport code</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">Departure Time</div>
-                <div class="field-type">Time</div>
-                <div class="field-description">Scheduled departure time</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">Arrival Airport</div>
-                <div class="field-type">Text</div>
-                <div class="field-description">3-letter airport code</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="table-documentation">
-        <div class="table-header">
-            <div class="table-name">🏨 Hotel (Transient)</div>
-            <div class="record-count">546 records</div>
-        </div>
-        <div class="field-list">
-            <div class="field-item">
-                <div class="field-name">C/I Date</div>
-                <div class="field-type">Date</div>
-                <div class="field-description">Check-in date</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">Folio Sent to TM</div>
-                <div class="field-type">Checkbox</div>
-                <div class="field-description">Tracking if folio was sent</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">CCA Submitted</div>
-                <div class="field-type">Checkbox</div>
-                <div class="field-description">Credit card authorization status</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">CCA</div>
-                <div class="field-type">Text</div>
-                <div class="field-description">CCA number/details</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">Notes</div>
-                <div class="field-type">Long Text</div>
-                <div class="field-description">Special requests, notes</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">VVIP</div>
-                <div class="field-type">Checkbox</div>
-                <div class="field-description">VIP guest indicator</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="table-documentation">
-        <div class="table-header">
-            <div class="table-name">🏨 Hotel (Group)</div>
-            <div class="record-count">104 groups</div>
-        </div>
-        <div class="field-list">
-            <div class="field-item">
-                <div class="field-name">C/I Date</div>
-                <div class="field-type">Date</div>
-                <div class="field-description">Group check-in date</div>
-            </div>
-            <div class="field-item">
-                <div class="field-name">C/O Date</div>
-                <div class="field-type">Date</div>
-                <div class="field-description">Group check-out date</div>
-            </div>
-            <div class="field-item key-field">
-                <div class="field-name">Client</div>
-                <div class="field-type">Link to Group</div>
-                <div class="field-description">Links to client/group</div>
+                <div class="field-type">Link to Client</div>
+                <div class="field-description">Links to client</div>
             </div>
             <div class="field-item">
                 <div class="field-name">Touring Party</div>
@@ -551,8 +549,8 @@
             </div>
             <div class="field-item key-field">
                 <div class="field-name">Client</div>
-                <div class="field-type">Link to Group</div>
-                <div class="field-description">Links to client/group</div>
+                <div class="field-type">Link to Client</div>
+                <div class="field-description">Links to client</div>
             </div>
             <div class="field-item">
                 <div class="field-name">Movement Type</div>
@@ -595,8 +593,8 @@
             </div>
             <div class="field-item key-field">
                 <div class="field-name">Client</div>
-                <div class="field-type">Link to Group</div>
-                <div class="field-description">Links to client/group</div>
+                <div class="field-type">Link to Client</div>
+                <div class="field-description">Links to client</div>
             </div>
             <div class="field-item">
                 <div class="field-name">Provider</div>
@@ -692,6 +690,38 @@
                 <div class="field-description">Login credentials</div>
             </div>
         </div>
+        <div class="expansion-note">
+            <strong>⚡ Migration Enhancement:</strong> Passwords will be properly encrypted and additional security fields added for enhanced credential management.
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">📧 Email Templates</div>
+            <div class="record-count">7 records</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">Name</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Template name</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Subject</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Email subject line</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Body</div>
+                <div class="field-type">Long Text</div>
+                <div class="field-description">Email template content</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">CC</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Default CC recipients</div>
+            </div>
+        </div>
     </div>
 
     <div class="table-documentation">
@@ -712,8 +742,8 @@
             </div>
             <div class="field-item key-field">
                 <div class="field-name">Clients</div>
-                <div class="field-type">Link to Group</div>
-                <div class="field-description">Links to client/group</div>
+                <div class="field-type">Link to Client</div>
+                <div class="field-description">Links to client</div>
             </div>
             <div class="field-item">
                 <div class="field-name">Type</div>
@@ -738,13 +768,57 @@
         </div>
     </div>
 
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">📧 Gmail IDs</div>
+            <div class="record-count">1,346 records</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">ID</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Gmail message ID</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Type</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Flight Ticket or other</div>
+            </div>
+        </div>
+        <div class="expansion-note">
+            <strong>⚡ Migration Note:</strong> This data represents processed email extractions and will be incorporated into the audit log system.
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">📝 Things</div>
+            <div class="record-count">14 records</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">Name</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">Reference name</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Notes</div>
+                <div class="field-type">Long Text</div>
+                <div class="field-description">Detailed information</div>
+            </div>
+        </div>
+        <div class="expansion-note">
+            <strong>⚡ Migration Note:</strong> These miscellaneous notes will be categorized and moved to appropriate sections in the new system.
+        </div>
+    </div>
+
     <div class="relationship-section">
-        <h2 style="margin-top: 0;">🔗 Key Relationships</h2>
-        <p>The database uses Airtable's linking feature to connect related records:</p>
+        <h2 style="margin-top: 0;">🔗 Current Relationships (Enhanced in Migration)</h2>
+        <p>The current system uses basic Airtable linking. The new MySQL system will add Agent_ID tracking to all bookings:</p>
         
         <div class="relationship-diagram">
             <div class="relationship-item">
-                <span class="rel-table">Group</span>
+                <span class="rel-table">Client</span>
                 <span class="rel-arrow">→</span>
                 <span class="rel-table">Traveler</span>
                 <span class="rel-field">(via Client ID field)</span>
@@ -758,35 +832,28 @@
             </div>
             
             <div class="relationship-item">
-                <span class="rel-table">Group</span>
+                <span class="rel-table">Client</span>
                 <span class="rel-arrow">→</span>
                 <span class="rel-table">All Booking Types</span>
                 <span class="rel-field">(via Client field)</span>
             </div>
             
             <div class="relationship-item">
-                <span class="rel-table">Traveler</span>
+                <span class="rel-table">User (New)</span>
                 <span class="rel-arrow">→</span>
-                <span class="rel-table">Hotel (Transient)</span>
-                <span class="rel-field">(via Traveler field)</span>
-            </div>
-            
-            <div class="relationship-item">
-                <span class="rel-table">Traveler</span>
-                <span class="rel-arrow">→</span>
-                <span class="rel-table">Chauffer/Rental</span>
-                <span class="rel-field">(via Traveler field)</span>
+                <span class="rel-table">All Bookings</span>
+                <span class="rel-field">(via Agent_ID - NEW)</span>
             </div>
         </div>
     </div>
 
     <div class="automation-section">
-        <h2 style="margin-top: 0;">⚡ Current Automations</h2>
-        <p>These automations run automatically to keep the team informed:</p>
+        <h2 style="margin-top: 0;">⚡ Current Automations (Phase 2)</h2>
+        <p>These automations will be recreated in the backend development phase:</p>
         
         <div class="automation-item">
             <div class="automation-name">TTA - Air Week Ahead</div>
-            <div class="automation-trigger">Scheduled: Runs every week to find upcoming flights and send summary email</div>
+            <div class="automation-trigger">Scheduled: Runs every 24 hours to find upcoming flights and send summary email</div>
         </div>
         
         <div class="automation-item">
@@ -806,8 +873,8 @@
     </div>
 
     <div class="form-section">
-        <h2 style="margin-top: 0;">📝 Data Entry Forms</h2>
-        <p>Forms used for adding new data to the system:</p>
+        <h2 style="margin-top: 0;">📝 Data Entry Forms (Phase 3)</h2>
+        <p>Current forms will be recreated as web interfaces in the frontend phase:</p>
         
         <div class="form-item">
             <div class="form-icon">👤</div>
@@ -821,14 +888,14 @@
             <div class="form-icon">🏢</div>
             <div class="form-details">
                 <div class="form-name">TTA-New Client Enroll</div>
-                <div class="form-table">Adds new groups/clients to the Group table</div>
+                <div class="form-table">Adds new clients to the Client table</div>
             </div>
         </div>
     </div>
 
     <div class="interface-section">
-        <h2 style="margin-top: 0;">💻 Interface</h2>
-        <p>Custom interface for managing operations:</p>
+        <h2 style="margin-top: 0;">💻 Interface (Phase 3)</h2>
+        <p>Current custom interface will be replaced with comprehensive web portals:</p>
         
         <div class="form-item">
             <div class="form-icon">📊</div>
@@ -840,9 +907,99 @@
     </div>
 
     <div style="background: #f0fdf4; border-radius: 15px; padding: 30px; text-align: center; margin-top: 40px;">
-        <h3 style="color: #15803d; margin-top: 0;">Migration Considerations</h3>
-        <p style="margin-bottom: 0;">This structure will be normalized and optimized in the MySQL database,<br>
-        with proper indexes, constraints, and relationships to ensure data integrity and performance.</p>
+        <h3 style="color: #15803d; margin-top: 0;">Migration Strategy</h3>
+        <p style="margin-bottom: 0;">Phase 1 will migrate all current data while implementing Kyle's comprehensive field requirements. The result will be a professional-grade database supporting 10x the functionality of the current system, ready for advanced backend and frontend development.</p>
     </div>
 </body>
 </html>
+                <div class="field-description">Links to client</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Airline-1</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">First flight airline</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Flight #-1</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">First flight number</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Departure Airport</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">3-letter airport code</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Departure Time</div>
+                <div class="field-type">Time</div>
+                <div class="field-description">Scheduled departure time</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Arrival Airport</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">3-letter airport code</div>
+            </div>
+        </div>
+        <div class="expansion-note">
+            <strong>⚡ Migration Enhancement:</strong> Will add Agent_ID tracking and enhanced booking source integration for Sabre API connectivity.
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🏨 Hotel (Transient)</div>
+            <div class="record-count">546 records</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">C/I Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Check-in date</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Folio Sent to TM</div>
+                <div class="field-type">Checkbox</div>
+                <div class="field-description">Tracking if folio was sent</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">CCA Submitted</div>
+                <div class="field-type">Checkbox</div>
+                <div class="field-description">Credit card authorization status</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">CCA</div>
+                <div class="field-type">Text</div>
+                <div class="field-description">CCA number/details</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">Notes</div>
+                <div class="field-type">Long Text</div>
+                <div class="field-description">Special requests, notes</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">VVIP</div>
+                <div class="field-type">Checkbox</div>
+                <div class="field-description">VIP guest indicator</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-documentation">
+        <div class="table-header">
+            <div class="table-name">🏨 Hotel (Group)</div>
+            <div class="record-count">104 groups</div>
+        </div>
+        <div class="field-list">
+            <div class="field-item">
+                <div class="field-name">C/I Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Group check-in date</div>
+            </div>
+            <div class="field-item">
+                <div class="field-name">C/O Date</div>
+                <div class="field-type">Date</div>
+                <div class="field-description">Group check-out date</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Client</div>
+                <div class="field-type">Link to Client</div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase 1: Database Foundation & Migration - Detailed Plan</title>
+    <title>Phase 1: Database Foundation & Migration - Updated Plan</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -44,6 +44,14 @@
             margin-bottom: 30px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             border-left: 5px solid #2196F3;
+        }
+        
+        .update-notice {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
         }
         
         .hour-breakdown {
@@ -112,6 +120,28 @@
             color: #4CAF50;
             margin-right: 10px;
             font-weight: bold;
+        }
+        
+        .scope-changes {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .field-expansion {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .field-comparison {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
         }
         
         .deliverables-section {
@@ -211,12 +241,50 @@
 <body>
     <div class="header">
         <h1>Phase 1: Database Foundation & Migration</h1>
-        <div class="subtitle">20-25 Hour Implementation Plan</div>
+        <div class="subtitle">10-15 Hour Focused Implementation Plan</div>
+    </div>
+
+    <div class="update-notice">
+        <h3 style="margin-top: 0; color: #2e7d32;">🔄 Updated Requirements</h3>
+        <ul style="margin-bottom: 0;">
+            <li><strong>Reduced Timeline:</strong> 10-15 hours (down from 20-25)</li>
+            <li><strong>Terminology Update:</strong> "Clients" replaces "Groups" throughout system</li>
+            <li><strong>Expanded Data Model:</strong> Comprehensive traveler and client profiles</li>
+            <li><strong>Database Focus Only:</strong> No automations or integrations in Phase 1</li>
+        </ul>
     </div>
 
     <div class="summary-box">
-        <h2 style="margin-top: 0; color: #1976D2;">Quick Summary</h2>
-        <p style="margin-bottom: 0;">This phase focuses on creating a MySQL database structure and migrating all data from Airtable. I'll work efficiently to deliver a solid foundation for your application within 20-25 hours, ready for the development team to build upon.</p>
+        <h2 style="margin-top: 0; color: #1976D2;">Focused Summary</h2>
+        <p style="margin-bottom: 0;">This phase creates a robust MySQL database structure and migrates all data from Airtable. We'll implement Kyle's comprehensive client and traveler profiles within a tight 10-15 hour budget, focusing purely on database architecture and data migration.</p>
+    </div>
+
+    <div class="scope-changes">
+        <h2 style="margin-top: 0; color: #f57c00;">Significant Scope Expansion</h2>
+        <p>Kyle's detailed requirements represent a major upgrade from the current Airtable structure:</p>
+        
+        <div class="field-expansion">
+            <div class="field-comparison">
+                <h4>Travelers</h4>
+                <p><strong>Current Airtable:</strong> 7 basic fields</p>
+                <p><strong>New Requirements:</strong> 80+ comprehensive fields</p>
+                <small>Multiple passports, frequent flyer programs, emergency contacts, preferences, loyalty programs</small>
+            </div>
+            
+            <div class="field-comparison">
+                <h4>Clients (formerly Groups)</h4>
+                <p><strong>Current Airtable:</strong> 7 basic fields</p>
+                <p><strong>New Requirements:</strong> 100+ detailed fields</p>
+                <small>Multiple credit cards, corporate programs, agent assignments, billing rates, contracts</small>
+            </div>
+            
+            <div class="field-comparison">
+                <h4>Users (New)</h4>
+                <p><strong>Current Airtable:</strong> Not implemented</p>
+                <p><strong>New Requirements:</strong> 17 fields</p>
+                <small>Authentication, role management, access control, audit tracking</small>
+            </div>
+        </div>
     </div>
 
     <div class="prerequisites">
@@ -243,47 +311,40 @@
             <li>
                 <span class="warning">⚠️</span>
                 <div>
-                    <strong>Development Tools:</strong> MySQL Workbench, IDE setup, Git repository
+                    <strong>Field Mapping Decisions:</strong> How to handle expanded field requirements vs current data
                 </div>
             </li>
         </ul>
     </div>
 
-    <h2 style="text-align: center; margin-bottom: 30px;">Hour-by-Hour Breakdown</h2>
+    <h2 style="text-align: center; margin-bottom: 30px;">Revised Hour-by-Hour Breakdown</h2>
     
     <div class="hour-breakdown">
         <div class="task-card analysis">
             <div class="task-title">
-                Part 1: Analysis & Design
-                <span class="hours-badge">8-10 hours</span>
+                Part 1: Analysis & Schema Design
+                <span class="hours-badge">5-6 hours</span>
             </div>
             <ul class="task-list">
                 <li>
                     <span class="check">✓</span>
                     <div>
-                        <strong>Airtable Analysis (2 hrs)</strong><br>
-                        Document all tables, fields, and relationships
+                        <strong>Current Airtable Analysis (1 hr)</strong><br>
+                        Document existing 13 tables and relationships
                     </div>
                 </li>
                 <li>
                     <span class="check">✓</span>
                     <div>
-                        <strong>Schema Design (3-4 hrs)</strong><br>
-                        Create normalized database structure with proper relationships
+                        <strong>Comprehensive Schema Design (3-4 hrs)</strong><br>
+                        Design MySQL tables for 80+ traveler fields, 100+ client fields, user management
                     </div>
                 </li>
                 <li>
                     <span class="check">✓</span>
                     <div>
-                        <strong>Review with Kyle (1 hr)</strong><br>
-                        Get approval on structure before building
-                    </div>
-                </li>
-                <li>
-                    <span class="check">✓</span>
-                    <div>
-                        <strong>Migration Planning (2-3 hrs)</strong><br>
-                        Map Airtable fields to MySQL, plan data transformations
+                        <strong>Field Mapping Strategy (1 hr)</strong><br>
+                        Map existing Airtable data to new comprehensive structure
                     </div>
                 </li>
             </ul>
@@ -291,36 +352,36 @@
 
         <div class="task-card implementation">
             <div class="task-title">
-                Part 2: Implementation
-                <span class="hours-badge">10-12 hours</span>
+                Part 2: Database Implementation
+                <span class="hours-badge">7-8 hours</span>
             </div>
             <ul class="task-list">
                 <li>
                     <span class="check">✓</span>
                     <div>
-                        <strong>Database Setup (2 hrs)</strong><br>
-                        Create dev, staging, prod databases on Dreamhost
+                        <strong>Database Setup (1 hr)</strong><br>
+                        Create MySQL databases on Dreamhost (dev, staging, prod)
                     </div>
                 </li>
                 <li>
                     <span class="check">✓</span>
                     <div>
                         <strong>Schema Creation (3 hrs)</strong><br>
-                        Execute CREATE TABLE scripts, set up indexes
+                        Execute comprehensive CREATE TABLE scripts with all new fields
                     </div>
                 </li>
                 <li>
                     <span class="check">✓</span>
                     <div>
-                        <strong>Migration Scripts (3-4 hrs)</strong><br>
-                        Write export/transform/import scripts
+                        <strong>Migration Scripts (2-3 hrs)</strong><br>
+                        Write scripts to transform Airtable data to new structure
                     </div>
                 </li>
                 <li>
                     <span class="check">✓</span>
                     <div>
-                        <strong>Data Migration (2-3 hrs)</strong><br>
-                        Execute migration, handle errors, verify data
+                        <strong>Execute Migration (1-2 hrs)</strong><br>
+                        Run migration, handle data transformations, verify integrity
                     </div>
                 </li>
             </ul>
@@ -328,29 +389,22 @@
 
         <div class="task-card testing">
             <div class="task-title">
-                Part 3: Testing & Documentation
-                <span class="hours-badge">2-3 hours</span>
+                Part 3: Validation & Documentation
+                <span class="hours-badge">1-2 hours</span>
             </div>
             <ul class="task-list">
                 <li>
                     <span class="check">✓</span>
                     <div>
                         <strong>Data Validation (1 hr)</strong><br>
-                        Verify record counts and relationships
+                        Verify all records migrated correctly with proper relationships
                     </div>
                 </li>
                 <li>
                     <span class="check">✓</span>
                     <div>
-                        <strong>Quick Testing (1 hr)</strong><br>
-                        Test key queries and data integrity
-                    </div>
-                </li>
-                <li>
-                    <span class="check">✓</span>
-                    <div>
-                        <strong>Documentation (0.5-1 hr)</strong><br>
-                        Create essential setup and migration notes
+                        <strong>Quick Documentation (0.5-1 hr)</strong><br>
+                        Essential setup notes for backend development team
                     </div>
                 </li>
             </ul>
@@ -358,80 +412,68 @@
     </div>
 
     <div class="deliverables-section">
-        <h2 style="margin-top: 0; color: #2e7d32;">What You'll Have After 25 Hours</h2>
+        <h2 style="margin-top: 0; color: #2e7d32;">What You'll Have After 15 Hours</h2>
         <div class="deliverable-grid">
             <div class="deliverable-item">
-                <strong>✅ Three MySQL Databases</strong><br>
-                Development, Staging, and Production environments
+                <strong>✅ Comprehensive Database Schema</strong><br>
+                Complete MySQL structure with 80+ traveler fields, 100+ client fields
+            </div>
+            <div class="deliverable-item">
+                <strong>✅ Three Environment Setup</strong><br>
+                Development, Staging, and Production databases on Dreamhost
             </div>
             <div class="deliverable-item">
                 <strong>✅ Complete Data Migration</strong><br>
-                All Airtable data successfully transferred
+                All current Airtable data successfully transferred and expanded
             </div>
             <div class="deliverable-item">
-                <strong>✅ Optimized Schema</strong><br>
-                Normalized tables with proper indexes
+                <strong>✅ User Management Foundation</strong><br>
+                User table ready for role-based access control implementation
             </div>
             <div class="deliverable-item">
-                <strong>✅ Data Integrity</strong><br>
-                All relationships properly established
+                <strong>✅ Booking Architecture</strong><br>
+                All booking types with Agent_ID, Client_ID, Traveler_ID relationships
             </div>
             <div class="deliverable-item">
-                <strong>✅ Migration Scripts</strong><br>
-                Reusable scripts for future updates
-            </div>
-            <div class="deliverable-item">
-                <strong>✅ Quick Start Guide</strong><br>
-                Documentation for the development team
+                <strong>✅ Backend-Ready Foundation</strong><br>
+                Database structure prepared for Spring Boot API development
             </div>
         </div>
     </div>
 
     <div class="timeline-section">
-        <h2 style="margin-top: 0;">Overall Schedule</h2>
+        <h2 style="margin-top: 0;">Compressed 3-Day Schedule</h2>
         
         <div class="day-by-day">
             <div class="day-item">
                 <div class="day-number">Day 1</div>
                 <div class="day-content">
-                    <div class="day-title">Airtable Analysis & Initial Design</div>
-                    <p>Export all Airtable data, document structure, begin schema design</p>
+                    <div class="day-title">Analysis & Schema Design</div>
+                    <p>Analyze current Airtable, design comprehensive MySQL schema with Kyle's expanded requirements</p>
                 </div>
             </div>
             
             <div class="day-item">
                 <div class="day-number">Day 2</div>
                 <div class="day-content">
-                    <div class="day-title">Complete Schema & Review</div>
-                    <p>Finalize database design, review with Kyle, make adjustments</p>
+                    <div class="day-title">Database Implementation</div>
+                    <p>Create databases, implement schema, write migration scripts for expanded data model</p>
                 </div>
             </div>
             
             <div class="day-item">
                 <div class="day-number">Day 3</div>
                 <div class="day-content">
-                    <div class="day-title">Database Setup & Scripts</div>
-                    <p>Create databases, implement schema, write migration scripts</p>
-                </div>
-            </div>
-            
-            <div class="day-item">
-                <div class="day-number">Day 4</div>
-                <div class="day-content">
-                    <div class="day-title">Execute Migration</div>
-                    <p>Run migration scripts, fix issues, verify data integrity</p>
-                </div>
-            </div>
-            
-            <div class="day-item">
-                <div class="day-number">Day 5</div>
-                <div class="day-content">
-                    <div class="day-title">Testing & Handoff</div>
-                    <p>Final validation, documentation, prepare for development team</p>
+                    <div class="day-title">Migration & Validation</div>
+                    <p>Execute migration, validate data integrity, prepare documentation for backend team</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <div style="background: #e3f2fd; border-radius: 12px; padding: 25px; text-align: center;">
+        <h3 style="color: #1976D2; margin-top: 0;">Database-First Approach Benefits</h3>
+        <p style="margin-bottom: 0;">By focusing purely on database architecture in Phase 1, we create a rock-solid foundation that supports Kyle's comprehensive business requirements. The backend team can then build APIs knowing the data model is complete and optimized.</p>
+    </div>
 </body>
 </html>
