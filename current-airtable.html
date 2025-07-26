@@ -640,21 +640,29 @@
                 <div class="field-type">Link to Traveler</div>
                 <div class="field-description">Credit owner</div>
             </div>
+            <div class="field-item key-field">
+                <div class="field-name">Client</div>
+                <div class="field-type">Link to Client</div>
+                <div class="field-description">Links to client for billing/accounting</div>
+            </div>
             <div class="field-item">
                 <div class="field-name">Airline</div>
                 <div class="field-type">Text</div>
-                <div class="field-description">Issuing airline</div>
+                <div class="field-description">Issuing airline (AA, DL, UA)</div>
             </div>
             <div class="field-item">
                 <div class="field-name">Amount</div>
                 <div class="field-type">Currency</div>
-                <div class="field-description">Credit value</div>
+                <div class="field-description">Credit value in USD</div>
             </div>
             <div class="field-item">
                 <div class="field-name">MCO/Ticket #</div>
                 <div class="field-type">Text</div>
                 <div class="field-description">Reference number</div>
             </div>
+        </div>
+        <div class="expansion-note">
+            <strong>⚡ Migration Enhancement:</strong> Now properly linked to both Traveler AND Client for complete credit management and accounting.
         </div>
     </div>
 
@@ -738,12 +746,17 @@
             <div class="field-item">
                 <div class="field-name">NAME</div>
                 <div class="field-type">Text</div>
-                <div class="field-description">Traveler name</div>
+                <div class="field-description">Traveler name (LASTNAME, FIRSTNAME)</div>
             </div>
             <div class="field-item key-field">
-                <div class="field-name">Clients</div>
+                <div class="field-name">Traveler</div>
+                <div class="field-type">Link to Traveler</div>
+                <div class="field-description">Links to specific traveler</div>
+            </div>
+            <div class="field-item key-field">
+                <div class="field-name">Client</div>
                 <div class="field-type">Link to Client</div>
-                <div class="field-description">Links to client</div>
+                <div class="field-description">Links to client for billing/commission tracking</div>
             </div>
             <div class="field-item">
                 <div class="field-name">Type</div>
@@ -763,8 +776,11 @@
             <div class="field-item">
                 <div class="field-name">Total Rate</div>
                 <div class="field-type">Currency</div>
-                <div class="field-description">Total cost</div>
+                <div class="field-description">Total cost in USD</div>
             </div>
+        </div>
+        <div class="expansion-note">
+            <strong>⚡ Migration Enhancement:</strong> Now properly linked to both Traveler AND Client. Airport Greeter services will be moved to dedicated Airport Greeter table.
         </div>
     </div>
 
