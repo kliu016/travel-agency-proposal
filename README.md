@@ -15,3 +15,15 @@ Visit: https://[your-username].github.io/travel-agency-proposal/
 ---
 Prepared for: Kyle MacKinnon  
 By: Value Software Solutions
+
+## Database Info
+| Environment | Database Name          | Hostname                          | Username           | Password
+| ----------- | --------------------   | -------------------------------   | --------------     | --------------
+| Dev         | `travel_agency_dev`    | `mysql-dev.thetravelagency.us`    | `kylemac_dev`      | `TravelAgencyDev`  
+| Staging     | `travel_agency_staging`| `mysql-stage.thetravelagency.us`  | `kylemac_staging`  | `TravelAgencyStage`  
+| Prod        | `travel_agency_prod`   | `mysql-prod.thetravelagency.us`   | `kylemac_prod`     | `TravelAgencyProd`  
+
+# Connect to your new database from the command line with:
+- mysql -u kylemac_dev -p -h mysql-dev.globe.thetravelagency.us travel_agency_dev
+- mysql -u kylemac_staging -p -h mysql-stage.kcment.com travel_agency_staging
+- 
