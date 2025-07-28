@@ -24,9 +24,5 @@ By: Value Software Solutions
 | Prod        | `travel_agency_prod`   | `mysql-prod.globe.thetravelagency.us`   | `kylemac_prod`     | `TravelAgencyProd`  
 
 # Connect to your new database from the command line with:
-- mysql -u kylemac_dev -p -h mysql-dev.globe.thetravelagency.us travel_agency_dev
-- mysql -u kylemac_stage -p -h mysql-stage.globe.thetravelagency.us travel_agency_stage
-
-
 - mysql -h mysql-dev.globe.thetravelagency.us -u kylemac_dev -p travel_agency_dev
 
