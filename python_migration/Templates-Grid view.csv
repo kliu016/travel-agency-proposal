@@ -1,0 +1,31 @@
+﻿Name,Subject,Body,CC
+Commission Email-Initial,THE TRAVEL AGENCY℠ - Commission Invoice | PROPERTY - GROUP NAME - CID,"Hello – 
+
+Please find attached commission invoice, w9, and payment guidance for our guests stay this past week. 
+
+Please confirm receipt and let us know if you need anything more!
+",ar@thetravelagency.us
+Rooming List-Initial,TTA - {Client Name} | {DDMMM} - {Hotel Name} | {CID},"Hey {Name}, 
+
+Rooming List for your stay at {Hotel Name (BOLD/ITALIC)} is attached. 
+
+Notes:
+-
+-
+-
+
+Please review and let us know if you have any questions. 
+",
+Commission Inquiry,TTA - Commission Inquiry,"Hello,
+ 
+We show that we have not received commission payment for the following reservation(s):
+ 
+ 
+ 
+Please advise payment status at your soonest.
+ ",
+International Bag Fees,Insert,"**Many international airlines have high checked baggage fees, especially for overweight or oversized items. If you’re traveling with a large amount of equipment, we strongly recommend reviewing the airline’s baggage policies in advance to avoid unexpected costs. Additional fees may apply for extra bags, overweight luggage, or specialty equipment. We can assist with this, but need to know the information in advance.",
+Fares are Subject to Change,Insert,,
+Toronto - Rogers Centre Oversized Parking,,"The Rogers Centre operates a “Pay and Display” parking lot on the south side of Bremner Boulevard, between Spadina Avenue and Rees Street. https://www.torontoparking.preciseparklink.com/rogers-centre",
+Chicago - McCormick Place Oversized Parking,,"McCormick Place operates a surface lot which can accomodate oversize vehicles. Lot B is the surface lot and there are NO in's and out's. 3050 South Moe Drive, Chicago, IL 60616
+https://www.mccormickplace.com/getting-here/parking-rates/",

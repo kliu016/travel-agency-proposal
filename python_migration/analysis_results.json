@@ -1,0 +1,112 @@
+[
+  {
+    "table": "email_templates",
+    "csv_file": "Templates-Grid view.csv",
+    "csv_columns": 4,
+    "db_columns": 10,
+    "exact_matches": 0,
+    "needs_rename": 3,
+    "csv_only": 1,
+    "db_only": 5,
+    "csv_rows": 7
+  },
+  {
+    "table": "vendor_websites",
+    "csv_file": "Vendor Websites-Grid view.csv",
+    "csv_columns": 5,
+    "db_columns": 12,
+    "exact_matches": 0,
+    "needs_rename": 2,
+    "csv_only": 3,
+    "db_only": 8,
+    "csv_rows": 43
+  },
+  {
+    "table": "passenger_credits",
+    "csv_file": "Passenger Credits-Passenger Credits.csv",
+    "csv_columns": 11,
+    "db_columns": 15,
+    "exact_matches": 0,
+    "needs_rename": 7,
+    "csv_only": 4,
+    "db_only": 5,
+    "csv_rows": 70
+  },
+  {
+    "table": "other_bookings",
+    "csv_file": "Other (Commissionable)-Grid view.csv",
+    "csv_columns": 12,
+    "db_columns": 19,
+    "exact_matches": 0,
+    "needs_rename": 0,
+    "csv_only": 12,
+    "db_only": 16,
+    "csv_rows": 12
+  },
+  {
+    "table": "chauffeur_bookings",
+    "csv_file": "Chauffer Vehicles-Chauffer Vehicles - Master.csv",
+    "csv_columns": 16,
+    "db_columns": 26,
+    "exact_matches": 0,
+    "needs_rename": 5,
+    "csv_only": 11,
+    "db_only": 18,
+    "csv_rows": 49
+  },
+  {
+    "table": "rental_car_bookings",
+    "csv_file": "Rental Vehicles-Rental Vehicles - Master.csv",
+    "csv_columns": 17,
+    "db_columns": 25,
+    "exact_matches": 0,
+    "needs_rename": 3,
+    "csv_only": 14,
+    "db_only": 19,
+    "csv_rows": 58
+  },
+  {
+    "table": "hotel_transient_bookings",
+    "csv_file": "Hotel (Transient)-Hotel (Transient) - Master.csv",
+    "csv_columns": 26,
+    "db_columns": 30,
+    "exact_matches": 0,
+    "needs_rename": 6,
+    "csv_only": 20,
+    "db_only": 21,
+    "csv_rows": 677
+  },
+  {
+    "table": "air_bookings",
+    "csv_file": "Air-Air - Master.csv",
+    "csv_columns": 32,
+    "db_columns": 47,
+    "exact_matches": 0,
+    "needs_rename": 8,
+    "csv_only": 24,
+    "db_only": 36,
+    "csv_rows": 2805
+  },
+  {
+    "table": "hotel_group_bookings",
+    "csv_file": "Hotel (Group)-Hotel (Group) - Master.csv",
+    "csv_columns": 41,
+    "db_columns": 37,
+    "exact_matches": 0,
+    "needs_rename": 5,
+    "csv_only": 36,
+    "db_only": 29,
+    "csv_rows": 126
+  },
+  {
+    "table": "travelers",
+    "csv_file": "Traveler-Traveler - Master.csv",
+    "csv_columns": 103,
+    "db_columns": 92,
+    "exact_matches": 0,
+    "needs_rename": 79,
+    "csv_only": 24,
+    "db_only": 12,
+    "csv_rows": 942
+  }
+]
